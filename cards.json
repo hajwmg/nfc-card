@@ -1,0 +1,63 @@
+{
+  "cards": {
+    "nfc-me": {
+      "theme": {
+        "primary": "#f15a24",
+        "secondary": "#004c97",
+        "background": "#f4f6f9"
+      },
+      "brand": {
+        "name": "Mega Medical",
+        "logoTop": "mega",
+        "logoBottom": "MEDICAL",
+        "tagline": "We Do Your ENT / Mega Medical",
+        "website": "https://www.megamedical.co.kr"
+      },
+      "profile": {
+        "name": {
+          "ko": "하지원",
+          "en": "Jiwon Ha"
+        },
+        "displayName": "Jiwon Ha",
+        "initials": "JW",
+        "department": {
+          "ko": "영업기획팀",
+          "en": "Sales Planning Team"
+        },
+        "position": {
+          "ko": "사원",
+          "en": "Associate"
+        },
+        "mobile": "010-0000-0000",
+        "email": "jwha@megamedical.co.kr"
+      },
+      "office": {
+        "title": {
+          "ko": "본사 (Seoul HQ)",
+          "en": "Seoul HQ"
+        },
+        "address": {
+          "ko": "서울특별시 강남구 봉은사로 439 (CC빌딩 5층)",
+          "en": "5F, CC Bldg, 439, Bongeunsa-ro, Seoul, Korea"
+        }
+      },
+      "links": [
+        {
+          "type": "website",
+          "label": {
+            "ko": "메가메디칼 공식 홈페이지",
+            "en": "Mega Medical Official Site"
+          },
+          "url": "https://www.megamedical.co.kr",
+          "icon": "globe"
+        }
+      ],
+      "meta": {
+        "title": "Mega Medical - Jiwon Ha",
+        "description": "영업기획팀 하지원입니다.",
+        "ogTitle": "메가메디칼 하지원 사원",
+        "ogImage": "https://www.megamedical.co.kr/img/common/logo.png"
+      }
+    }
+  }
+}
