@@ -1,4 +1,110 @@
 {
+  "directory": [
+    {
+      "id": "nfc-me",
+      "name": "Jiwon Ha",
+      "label": "하지원",
+      "title": "영업기획팀 | 사원",
+      "kind": "명함",
+      "status": "중앙관리 적용",
+      "site": "https://hajwmg.github.io/nfc-me/",
+      "repo": "https://github.com/hajwmg/nfc-me"
+    },
+    {
+      "id": "nfc-Bae",
+      "name": "JUNG MIN BAE",
+      "label": "Bae",
+      "title": "Mega Medical",
+      "kind": "명함",
+      "status": "기존 HTML",
+      "site": "https://hajwmg.github.io/nfc-Bae/",
+      "repo": "https://github.com/hajwmg/nfc-Bae"
+    },
+    {
+      "id": "nfc-card_hailey",
+      "name": "Planner 서해주",
+      "label": "Hailey",
+      "title": "소중한습관",
+      "kind": "명함",
+      "status": "기존 HTML",
+      "site": "https://hajwmg.github.io/nfc-card_hailey/",
+      "repo": "https://github.com/hajwmg/nfc-card_hailey"
+    },
+    {
+      "id": "nfc-CEO",
+      "name": "Byung Jang Kim",
+      "label": "CEO",
+      "title": "Mega Medical",
+      "kind": "명함",
+      "status": "기존 HTML",
+      "site": "https://hajwmg.github.io/nfc-CEO/",
+      "repo": "https://github.com/hajwmg/nfc-CEO"
+    },
+    {
+      "id": "nfc-MIGUEL-KIM",
+      "name": "MIGUEL KIM",
+      "label": "Miguel",
+      "title": "Mega Medical",
+      "kind": "명함",
+      "status": "기존 HTML",
+      "site": "https://hajwmg.github.io/nfc-MIGUEL-KIM/",
+      "repo": "https://github.com/hajwmg/nfc-MIGUEL-KIM"
+    },
+    {
+      "id": "nfc-nayeon",
+      "name": "Na Yeon Kim",
+      "label": "Na Yeon",
+      "title": "Mega Medical",
+      "kind": "명함",
+      "status": "기존 HTML",
+      "site": "https://hajwmg.github.io/nfc-nayeon/",
+      "repo": "https://github.com/hajwmg/nfc-nayeon"
+    },
+    {
+      "id": "nfc-Song",
+      "name": "In Goo Song",
+      "label": "Song",
+      "title": "Mega Medical",
+      "kind": "명함",
+      "status": "기존 HTML",
+      "site": "https://hajwmg.github.io/nfc-Song/",
+      "repo": "https://github.com/hajwmg/nfc-Song"
+    },
+    {
+      "id": "nfc-WeeSoKim",
+      "name": "Wee So Kim",
+      "label": "Wee So Kim",
+      "title": "Mega Medical",
+      "kind": "명함",
+      "status": "기존 HTML",
+      "site": "https://hajwmg.github.io/nfc-WeeSoKim/",
+      "repo": "https://github.com/hajwmg/nfc-WeeSoKim"
+    },
+    {
+      "id": "nfc-zoayoo",
+      "name": "Andrew Kim",
+      "label": "Zoayoo",
+      "title": "Mega Medical",
+      "kind": "명함",
+      "status": "기존 HTML",
+      "site": "https://hajwmg.github.io/nfc-zoayoo/",
+      "repo": "https://github.com/hajwmg/nfc-zoayoo"
+    }
+  ],
+  "excluded": [
+    {
+      "id": "nfc-catalog",
+      "name": "제품 카탈로그",
+      "site": "https://hajwmg.github.io/nfc-catalog/",
+      "repo": "https://github.com/hajwmg/nfc-catalog"
+    },
+    {
+      "id": "nfc-card",
+      "name": "공통 관리 파일",
+      "site": "https://hajwmg.github.io/nfc-card/",
+      "repo": "https://github.com/hajwmg/nfc-card"
+    }
+  ],
   "cards": {
     "nfc-me": {
       "theme": {
