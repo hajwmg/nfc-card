@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NFC 명함 관리</title>
+  <style>
+    :root {
+      --orange: #f15a24;
+      --blue: #004c97;
+      --ink: #1f2630;
+      --muted: #69717c;
+      --line: #dde2e8;
+      --bg: #f4f6f9;
+      --surface: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 18px 42px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      margin: 7px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 14px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .search {
+      width: 100%;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 0 14px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .filter {
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 0 12px;
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      min-height: 198px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 16px;
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .id {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .badge {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      padding: 5px 8px;
+      background: #eef3f8;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .badge.central {
+      background: rgba(241, 90, 36, 0.12);
+      color: var(--orange);
+    }
+
+    .name {
+      margin: 12px 0 0;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+
+    .label {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .title {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 16px;
+    }
+
+    .actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .site {
+      background: var(--orange);
+      color: #ffffff;
+    }
+
+    .repo {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--ink);
+    }
+
+    .section-title {
+      margin: 28px 0 10px;
+      font-size: 18px;
+    }
+
+    .excluded {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 10px;
+    }
+
+    .mini {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 13px 14px;
+    }
+
+    .mini strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .mini span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .mini a {
+      flex: 0 0 auto;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .empty {
+      display: none;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      padding: 26px;
+      text-align: center;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    @media (max-width: 680px) {
+      .topbar,
+      .toolbar {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .home-link,
+      .filter {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <div>
+        <h1>NFC 명함 관리</h1>
+        <p class="subtitle">nfc-catalog, nfc-card 제외 / nfc-@@ 명함 페이지 목록</p>
+      </div>
+      <a class="home-link" href="https://github.com/hajwmg" target="_blank" rel="noopener">GitHub</a>
+    </div>
+
+    <section class="stats" aria-label="Summary">
+      <div class="stat"><strong id="total-count">0</strong><span>명함 페이지</span></div>
+      <div class="stat"><strong id="central-count">0</strong><span>중앙관리 적용</span></div>
+      <div class="stat"><strong id="legacy-count">0</strong><span>기존 HTML</span></div>
+    </section>
+
+    <div class="toolbar">
+      <input id="search" class="search" type="search" placeholder="이름, repo, 상태 검색">
+      <select id="filter" class="filter" aria-label="상태 필터">
+        <option value="all">전체</option>
+        <option value="central">중앙관리 적용</option>
+        <option value="legacy">기존 HTML</option>
+      </select>
+    </div>
+
+    <section id="grid" class="grid" aria-label="NFC card pages"></section>
+    <div id="empty" class="empty">검색 결과가 없습니다.</div>
+
+    <h2 class="section-title">별도 관리</h2>
+    <section id="excluded" class="excluded" aria-label="Excluded pages"></section>
+  </main>
+
+  <script>
+    const DATA_URL = "https://hajwmg.github.io/nfc-card/cards.json";
+    const state = { cards: [], excluded: [], query: "", filter: "all" };
+
+    const grid = document.getElementById("grid");
+    const empty = document.getElementById("empty");
+    const search = document.getElementById("search");
+    const filter = document.getElementById("filter");
+
+    function isCentral(card) {
+      return card.status.includes("중앙관리");
+    }
+
+    function renderStats() {
+      const central = state.cards.filter(isCentral).length;
+      document.getElementById("total-count").textContent = state.cards.length;
+      document.getElementById("central-count").textContent = central;
+      document.getElementById("legacy-count").textContent = state.cards.length - central;
+    }
+
+    function renderCards() {
+      const query = state.query.trim().toLowerCase();
+      const cards = state.cards.filter((card) => {
+        const haystack = [card.id, card.name, card.label, card.title, card.status].join(" ").toLowerCase();
+        const matchesQuery = !query || haystack.includes(query);
+        const matchesFilter =
+          state.filter === "all" ||
+          (state.filter === "central" && isCentral(card)) ||
+          (state.filter === "legacy" && !isCentral(card));
+        return matchesQuery && matchesFilter;
+      });
+
+      grid.innerHTML = cards.map((card) => `
+        <article class="card">
+          <div class="card-head">
+            <span class="id">${card.id}</span>
+            <span class="badge ${isCentral(card) ? "central" : ""}">${card.status}</span>
+          </div>
+          <h2 class="name">${card.name}</h2>
+          <p class="label">${card.label}</p>
+          <p class="title">${card.title}</p>
+          <div class="actions">
+            <a class="site" href="${card.site}" target="_blank" rel="noopener">사이트</a>
+            <a class="repo" href="${card.repo}" target="_blank" rel="noopener">Repo</a>
+          </div>
+        </article>
+      `).join("");
+
+      empty.style.display = cards.length ? "none" : "block";
+    }
+
+    function renderExcluded() {
+      document.getElementById("excluded").innerHTML = state.excluded.map((item) => `
+        <article class="mini">
+          <div>
+            <strong>${item.name}</strong>
+            <span>${item.id}</span>
+          </div>
+          <a href="${item.site}" target="_blank" rel="noopener">열기</a>
+        </article>
+      `).join("");
+    }
+
+    async function init() {
+      const response = await fetch(`${DATA_URL}?v=${Date.now()}`, { cache: "no-store" });
+      const data = await response.json();
+      state.cards = data.directory || [];
+      state.excluded = data.excluded || [];
+      renderStats();
+      renderCards();
+      renderExcluded();
+    }
+
+    function syncControls() {
+      state.query = search.value;
+      state.filter = filter.value;
+    }
+
+    search.addEventListener("input", () => {
+      syncControls();
+      renderCards();
+    });
+
+    filter.addEventListener("change", () => {
+      syncControls();
+      renderCards();
+    });
+
+    init().catch(() => {
+      empty.textContent = "목록을 불러오지 못했습니다.";
+      empty.style.display = "block";
+    });
+  </script>
+</body>
+</html>
